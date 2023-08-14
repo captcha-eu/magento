@@ -1,0 +1,2 @@
+
+import_from_git(url: 'git@gitlab.krone.at:KRN/fastlane.git')
