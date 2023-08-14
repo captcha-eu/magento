@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+  -  Copyright © Captcha.eu
+  -  Licensed under the Open Software License version 3.0
+  -  See LICENSE.txt for license details
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+	<event name="controller_action_predispatch_customer_account_loginPost">
+		<observer name="captchaeu_captcha_account_loginpost" instance="\CaptchaEU\Captcha\Observer\Frontend\LoginObserver" />
+	</event>
+	<event name="controller_action_predispatch_customer_account_createpost">
+		<observer name="captchaeu_captcha_account_createpost" instance="\CaptchaEU\Captcha\Observer\Frontend\CreateUserObserver" />
+	</event>
+	<event name="controller_action_predispatch_customer_account_forgotpasswordpost">
+		<observer name="captchaeu_captcha_account_forgotpasswordpost" instance="\CaptchaEU\Captcha\Observer\Frontend\ForgotPasswordObserver"/>
+	</event>
+	<event name="controller_action_predispatch_contact_index_post">
+		<observer name="captchaeu_captcha_contact_index_post" instance="\CaptchaEU\Captcha\Observer\Frontend\ContactFormObserver" />
+	</event>
+	<event name="controller_action_predispatch_newsletter_subscriber_new">
+		<observer name="captchaeu_captcha_newsletter_subscriber_new" instance="\CaptchaEU\Captcha\Observer\Frontend\NewsletterObserver" />
+	</event>
+	<event name="controller_action_predispatch_sendfriend_product_sendmail">
+		<observer name="captchaeu_captcha_sendfriend_product_sendmail" instance="\CaptchaEU\Captcha\Observer\Frontend\SendFriendObserver" />
+	</event>
+
+</config>

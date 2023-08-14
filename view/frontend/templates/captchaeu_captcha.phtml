@@ -1,0 +1,102 @@
+<?php
+
+/**
+ *  File Name: captchaeu_captcha.phtml
+ *  Description: Script that sets up Captcha.eu KROT Interceptor and handles form submission
+ *
+ *  Copyright © Captcha.eu
+ *  Licensed under the Open Software License version 3.0
+ *  See LICENSE.txt for license details
+ */
+
+/** @var $block CaptchaEU\Captcha\Block\Frontend\Captcha */
+?>
+<script src="<?= /* @noEscape */ $block->getCaptchaHost() ?>/sdk.js" type="module" async></script>
+
+<div id="<?= /* @noEscape */ $block->getWidgetId() ?>"></div>
+
+<script>
+    // ensures KROT is loaded
+    function ensureKROTLoaded(callback) {
+        const checkVariable = () => {
+            // check availabilty
+            if (window['KROT'] !== undefined) {
+                // clear interval & trigger callback
+                clearInterval(checkInterval);
+                callback();
+            }
+        };
+
+        const checkInterval = setInterval(checkVariable, 200);
+    }
+
+    // wait for dom content to load
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // get form dom element
+        var form = document.getElementById('<?= /* @noEscape */ $block->getWidgetId() ?>').closest('form');
+
+        // no form present - abort
+        if(!form) {
+            return false;
+        }
+
+        // get submit button
+        var btn = form.querySelector('[type="submit"]');
+
+        // ensure KROT is available
+        ensureKROTLoaded(function() {
+
+            // KROT setup
+            KROT.setup('<?= /* @noEscape */ $block->escaper->escapeHtml($block->config->getKeyPublic()) ?>');
+            KROT.KROT_HOST = 'https://www.captcha.eu';
+
+            // intercept form
+            KROT.interceptForm(form, true);
+
+            // disable button on click
+            btn.addEventListener('click', function(e) {
+
+                // return if already intercepted
+                if(e.intercepted) return;
+
+                // prevent default
+                e.preventDefault();
+
+                // disable
+                btn.disabled = true;
+
+                // RUN captcha
+                KROT.getSolution().then((sol) => {
+
+                    // write solution to hidden field
+                    form.querySelector('[name="captcha_at_solution"]').value = JSON.stringify(sol);
+
+                    // append form key to form if not already
+                    if(!form.querySelector('[name="form_key"]')) {
+                        var formKey = '<?= /* @noEscape */ $block->getFormKey() ?>';
+
+                        // create new dom element
+                        var formKeyInput = document.createElement('input');
+                        formKeyInput.name = 'form_key';
+                        formKeyInput.type = 'hidden';
+                        formKeyInput.value = formKey;
+
+                        // append new element to form
+                        form.append(formKeyInput);
+                    }
+
+                    // re-enable button
+                    btn.disabled = false;
+                    btn.removeAttribute('disabled');
+
+                    // override prevented flag to prevent jquery from discarding event
+                    e.intercepted = true;
+
+                    // submit the form
+                    form.submit();
+                });
+            });
+        });
+    });
+</script>

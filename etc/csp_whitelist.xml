@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+	<policies>
+		<policy id="connect-src">
+			<values>
+				<value id="captcha_eu_default" type="host">https://www.captcha.eu</value>
+				<value id="captcha_eu_w19" type="host">https://w19.captcha.at</value>
+				<value id="captcha_eu_at" type="host">https://at.captcha.at</value>
+			</values>
+		</policy>
+		<policy id="script-src">
+			<values>
+				<value id="captcha_eu_default" type="host">https://www.captcha.eu</value>
+			</values>
+		</policy>
+	</policies>
+</csp_whitelist>

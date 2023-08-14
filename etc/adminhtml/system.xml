@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!--
+  -  Adminhtml Config
+  -
+  -  Copyright © Captcha.eu
+  -  Licensed under the Open Software License version 3.0
+  -  See LICENSE.txt for license details
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="captchaeu" translate="label" sortOrder="10">
+			<label>Captcha.eu</label>
+		</tab>
+
+		<section id="captchaeu_captcha" translate="label" sortOrder="510" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Main Settings</label>
+			<tab>captchaeu</tab>
+			<resource>CaptchaEU_Captcha::config</resource>
+
+			<!-- General Settings -->
+			<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General Config</label>
+
+				<!-- Rest Key -->
+				<field id="rest_key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Captcha.eu REST-Key</label>
+					<validate>required-entry</validate>
+				</field>
+
+				<!-- Public Key -->
+				<field id="public_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Captcha.eu Public-Key</label>
+					<validate>required-entry</validate>
+				</field>
+
+				<!-- Host -->
+				<field id="host" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Captcha.eu Host</label>
+					<validate>required-entry validate-url</validate>
+				</field>
+			</group>
+
+			<!-- Frontend Settings -->
+			<group id="frontend" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Frontend</label>
+
+				<!-- Enable Frontend -->
+				<field id="enabled" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Enable</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+
+				<!-- Enable Login -->
+				<field id="enabled_login" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+					<label>Protect Login</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>
+				</field>
+
+				<!-- Enable Forgot Password -->
+				<field id="enabled_forgot" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+					<label>Protect Forgot Password</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>
+				</field>
+
+				<!-- Enable Contact -->
+				<field id="enabled_contact" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+					<label>Protect Contact</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>
+				</field>
+
+				<!-- Enable User Create -->
+				<field id="enabled_create" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+					<label>Protect Create User</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>
+				</field>
+
+				<!-- Enable Newsletter -->
+				<field id="enabled_newsletter" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+					<label>Protect Newsletter</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>
+				</field>
+
+				<!-- Send to Friend -->
+				<field id="enabled_sendfriend" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+					<label>Protect Send To Friend</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+						<field id="enabled">1</field>
+					</depends>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>
