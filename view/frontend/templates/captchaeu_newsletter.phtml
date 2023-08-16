@@ -1,0 +1,27 @@
+<?php
+
+/**
+ *  File Name: captchaeu_newsletter.phtml
+ *  Description: Script that dynamically moves the widget div into the newsletter container
+ *
+ *  Copyright © Captcha.eu
+ *  Licensed under the Open Software License version 3.0
+ *  See LICENSE.txt for license details
+ */
+
+/** @var $block CaptchaEU\Captcha\Block\Frontend\Captcha */
+?>
+<script>
+    // get newsletter form by id
+    var widget = document.getElementById('<?= /* @noEscape */ $block->getWidgetId() ?>');
+
+    if(widget) {
+        // get newsletter form by id & append widget
+        var newsletter = document.getElementById('newsletter-validate-detail');
+
+        // if newsletter container present - append
+        if(newsletter) {
+            newsletter.append(widget);
+        }
+    }
+</script>

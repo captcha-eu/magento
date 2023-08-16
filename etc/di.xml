@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+  -  Copyright © Captcha.eu
+  -  Licensed under the Open Software License version 3.0
+  -  See LICENSE.txt for license details
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="CaptchaEU\Captcha\Api\ValidateInterface" type="CaptchaEU\Captcha\Model\Validate"/>
+
+    <!-- Default HTTP response provider -->
+    <preference for="CaptchaEU\Captcha\Model\Provider\SolutionProviderInterface" type="CaptchaEU\Captcha\Model\Provider\Response\DefaultSolutionProvider"/>
+    <preference for="CaptchaEU\Captcha\Model\IsCheckRequiredInterface" type="CaptchaEU\Captcha\Model\IsCheckRequired"/>
+
+    <!-- Set sensitive information -->
+    <type name="Magento\Config\Model\Config\TypePool">
+        <arguments>
+            <argument name="sensitive" xsi:type="array">
+                <item name="captchaeu_captcha/general/rest_key" xsi:type="string">1</item>
+            </argument>
+            <argument name="environment" xsi:type="array">
+                <item name="captchaeu_captcha/general/public_key" xsi:type="string">1</item>
+                <item name="captchaeu_captcha/general/rest_key" xsi:type="string">1</item>
+                <item name="captchaeu_captcha/general/host" xsi:type="string">https://www.captcha.eu</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

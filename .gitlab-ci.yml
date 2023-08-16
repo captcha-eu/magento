@@ -1,0 +1,18 @@
+stages:
+  - test
+
+
+before_script:
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_DEPLOY_KEY")
+
+tests:danger:
+  image: registry.krone.at/krn/fastlane_runner:latest
+  dependencies: []
+  stage: test
+  except:
+    - /^v([0-9]+).*/
+  script:
+    - fastlane danger_krn
+  tags:
+    - docker

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+  -  Newsletter
+  -
+  -  Copyright © Captcha.eu
+  -  Licensed under the Open Software License version 3.0
+  -  See LICENSE.txt for license details
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="before.body.end">
+
+			<!-- dynamic block -->
+			<block class="CaptchaEU\Captcha\Block\Frontend\Captcha" name="captcha-eu-newsletter-dynamic" after="captcha-eu-newsletter" template="CaptchaEU_Captcha::captchaeu_newsletter.phtml" ifconfig="captchaeu_captcha/frontend/enabled_newsletter">
+				<action method="setData">
+					<argument name="name" xsi:type="string">widget_id</argument>
+					<argument name="value" xsi:type="string">captchaeu_captcha_newsletter</argument>
+				</action>
+			</block>
+
+			<!-- SDK/Scripts -->
+			<block class="CaptchaEU\Captcha\Block\Frontend\Captcha" name="captcha-eu-newsletter" after="-" template="CaptchaEU_Captcha::captchaeu_captcha.phtml" ifconfig="captchaeu_captcha/frontend/enabled_newsletter">
+				<action method="setData">
+					<argument name="name" xsi:type="string">widget_id</argument>
+					<argument name="value" xsi:type="string">captchaeu_captcha_newsletter</argument>
+				</action>
+			</block>
+		</referenceContainer>
+	</body>
+</page>
