@@ -15,7 +15,7 @@ php bin/magento setup:upgrade;
 ```
 
 ## Obtain REST-Key & Public-Key
- - Go to [www.captcha.eu/login](www.captcha.eu/login) and signup
+ - Go to [https://www.captcha.eu/login](www.captcha.eu/login) and signup
  - After signup go to domains and add a new domain.
  - When done, you'll get the Rest-Key and Public Key
 
