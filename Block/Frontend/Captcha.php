@@ -46,7 +46,7 @@ class Captcha extends Template
         ResolverInterface $localeResolver,
         Escaper $escaper,
         array $data = [],
-        Config $config = null,
+        Config $config = null
     ) {
         parent::__construct($context, $data);
         $this->config = $config ?: ObjectManager::getInstance()->get(Config::class);
