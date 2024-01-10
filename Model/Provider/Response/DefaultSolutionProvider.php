@@ -12,8 +12,8 @@
 namespace CaptchaEU\Captcha\Model\Provider\Response;
 
 use Magento\Framework\App\RequestInterface;
-use CaptchaEU\Captcha\Api\ValidateInterface;
 use CaptchaEU\Captcha\Model\Provider\SolutionProviderInterface;
+use CaptchaEU\Captcha\Model\Validate;
 
 class DefaultSolutionProvider implements SolutionProviderInterface
 {
@@ -39,6 +39,6 @@ class DefaultSolutionProvider implements SolutionProviderInterface
      */
     public function execute(): string
     {
-        return (string) $this->request->getParam(ValidateInterface::PARAMETER_SOLUTION);
+        return (string) $this->request->getParam(Validate::PARAMETER_SOLUTION);
     }
 }

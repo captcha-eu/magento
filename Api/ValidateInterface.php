@@ -13,8 +13,6 @@ namespace CaptchaEU\Captcha\Api;
 
 interface ValidateInterface
 {
-    public const PARAMETER_SOLUTION = 'captcha_at_solution';
-
     /**
      * Validate solution
      *
