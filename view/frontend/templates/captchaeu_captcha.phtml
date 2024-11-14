@@ -46,7 +46,11 @@
 
         // ensure KROT is available
         ensureKROTLoaded(function() {
-
+            // Run Magento validation using correct syntax
+           if (jQuery && form && !jQuery(form).validation('isValid')) {
+                e.preventDefault();
+                return;
+            }
             // KROT setup
             KROT.setup('<?= /* @noEscape */ $block->escaper->escapeHtml($block->config->getKeyPublic()) ?>');
             KROT.KROT_HOST = 'https://www.captcha.eu';
