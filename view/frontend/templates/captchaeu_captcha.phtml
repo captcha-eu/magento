@@ -46,11 +46,6 @@
 
         // ensure KROT is available
         ensureKROTLoaded(function() {
-            // Run Magento validation using correct syntax
-           if (jQuery && form && !jQuery(form).validation('isValid')) {
-                e.preventDefault();
-                return;
-            }
             // KROT setup
             KROT.setup('<?= /* @noEscape */ $block->escaper->escapeHtml($block->config->getKeyPublic()) ?>');
             KROT.KROT_HOST = 'https://www.captcha.eu';
@@ -60,7 +55,12 @@
 
             // disable button on click
             btn.addEventListener('click', function(e) {
-
+                // Run Magento validation using correct syntax
+                if (jQuery && form && !jQuery(form).validation('isValid')) {
+                        e.preventDefault();
+                        return;
+                }
+                    
                 // return if already intercepted
                 if(e.intercepted) return;
 
