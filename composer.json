@@ -2,7 +2,7 @@
 	"name" : "captcha-eu/magento",
 	"description" : "Captcha.eu Extension for Magento2",
 	"type" : "magento2-module",
-	"version" : "1.0.2",
+	"version" : "1.0.3",
 	"keywords": [
 		"captcha",
 		"invisible captcha",
@@ -21,7 +21,7 @@
 		}
 	],
 	"require" : {
-		"php": ">=5.6.0"
+		"php": "~7.4.0||~8.0.0||~8.1.0||~8.2.0||~8.3.0||~8.4.0"
 	},
 	"autoload" : {
 		"files" : [
