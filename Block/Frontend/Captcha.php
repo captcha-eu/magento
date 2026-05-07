@@ -18,8 +18,6 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Escaper;
 
-use Zend\Json\Json;
-
 class Captcha extends Template
 {
     /**
@@ -31,6 +29,16 @@ class Captcha extends Template
      * @var ResolverInterface
      */
     private $localeResolver;
+
+    /**
+     * @var FormKey
+     */
+    public $formKey;
+
+    /**
+     * @var Escaper
+     */
+    public $escaper;
 
     /**
      * @param Template\Context $context
@@ -46,7 +54,7 @@ class Captcha extends Template
         ResolverInterface $localeResolver,
         Escaper $escaper,
         array $data = [],
-        Config $config = null
+        ?Config $config = null
     ) {
         parent::__construct($context, $data);
         $this->config = $config ?: ObjectManager::getInstance()->get(Config::class);
